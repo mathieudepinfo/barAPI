@@ -1,0 +1,31 @@
+{
+  "name": "barapi",
+  "version": "1.0.0",
+  "description": "une api pour le bar de l ecole",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mathieudepinfo/barAPI.git"
+  },
+  "author": "mathieu marsot",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mathieudepinfo/barAPI/issues"
+  },
+  "homepage": "https://github.com/mathieudepinfo/barAPI#readme",
+  "devDependencies": {
+    "code": "^5.1.2",
+    "lab": "^15.2.1",
+    "supertest": "^3.0.0"
+  },
+  "dependencies": {
+    "express": "^4.16.2",
+    "sqlite3": "^3.1.13"
+  }
+}

@@ -25,7 +25,14 @@
     "supertest": "^3.0.0"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "celebrate": "^7.0.4",
+    "crypto": "^1.0.1",
     "express": "^4.16.2",
+    "joi": "^13.1.2",
+    "jsonwebtoken": "^8.1.1",
+    "passport": "^0.4.0",
+    "passport-http": "^0.3.0",
     "sqlite3": "^3.1.13"
   }
 }

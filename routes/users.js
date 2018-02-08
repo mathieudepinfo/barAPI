@@ -52,7 +52,7 @@ router.get('/login',Celebrate.celebrate(
 });
 
 /**Route used to register a user, require admin status**/
-router.post('/register', /**VerifyToken.AsAdmin,**/Celebrate.celebrate(
+router.post('/register', VerifyToken.AsAdmin,Celebrate.celebrate(
 	{
 		body:Joi.object().keys({
 			username: Joi.string().required(),
@@ -68,11 +68,8 @@ router.post('/register', /**VerifyToken.AsAdmin,**/Celebrate.celebrate(
     	if (err){
     		return res.status(500).send("There was a problem registering the user.");
     	} 
-    	// create a token
-    	var token = jwt.sign({ id: req.body.username,role:req.body.role }, config.secret, {
-     		 expiresIn: 86400 // expires in 24 hours
-   		 });
-    	res.status(200).send({ auth: true, token: token });
+    	
+    	res.status(200).end();
   	}); 
 });
 
@@ -100,3 +97,4 @@ router.get('/logout', function(req, res) {
 
 module.exports.router = router;
 
+router.get('/users/:id',VerifyToken.AsAdmin)

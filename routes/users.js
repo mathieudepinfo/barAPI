@@ -48,7 +48,7 @@ router.get('/login',Celebrate.celebrate(
 	Passport.authenticate('basic',{session:false}),(req,res)=>{
 
 	console.log(`GET /login from ${req.user}`);
-	res.end();
+	res.send(`${req.username} has logged in`);
 });
 
 /**Route used to register a user, require admin status**/

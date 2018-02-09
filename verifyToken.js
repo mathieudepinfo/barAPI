@@ -16,7 +16,6 @@ function verifyToken(req, res, next) {
     next();
   });
 }
-module.exports = verifyToken;
 
 function verifyTokenAsAdmin(req, res, next) {
   let token = req.headers['x-access-token'];

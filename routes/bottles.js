@@ -50,7 +50,9 @@ router.post('/', VerifyToken.AsAdmin,Celebrate.celebrate(
                 console.log(err);
                 return next(err);
             }
+            console.log("added");
             res.status(201).end();
+
         });
     });
 

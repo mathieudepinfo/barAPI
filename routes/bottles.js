@@ -32,10 +32,10 @@ router.get('/:id',(req, res, next) => {
     });
 });
 
-/** Route to post a new kind of bottle in the database, require to be an "admin" **/
+/** Route to add a new kind of bottle in the database, require to be an "admin" **/
 router.post('/', VerifyToken.AsAdmin,Celebrate.celebrate(
     {//test on the request, needs a specific body
-        body: Joi.object().keys({
+       body: Joi.object().keys({
             brand: Joi.string().required(),
             price: Joi.number().integer().required(),
             volume: Joi.number().integer().required(),
@@ -43,11 +43,11 @@ router.post('/', VerifyToken.AsAdmin,Celebrate.celebrate(
         })
     }),
     (req, res, next) => {
-
         console.log(`INSERT new post ${req.body.brand}`);
         DB.run('INSERT INTO BOTTLES (BRAND,PRICE,VOLUME,NBR) VALUES (?, ?,?,?)', [req.body.brand, req.body.price,req.body.volume,req.body.number], (err) => {
 
             if (err) {
+                console.log(err);
                 return next(err);
             }
             res.status(201).end();

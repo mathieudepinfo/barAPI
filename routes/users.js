@@ -17,6 +17,7 @@ router.use(bodyParser.json());
 
 /**Passport strategy used when a user tries to log in**/
 Passport.use(new BasicStrategy((username,password,done)=>{
+	console.log("authentification :",username,password);
 
 	DB.get('SELECT * FROM USERS WHERE USERNAME=?',[username],(err,user)=>{
 		if(err){//bad request
@@ -26,7 +27,7 @@ Passport.use(new BasicStrategy((username,password,done)=>{
 			return done(null,false,{message: "wrong username"});
 		}
 
-		if(bcrypt.compareSync(password, user.PASSWORD)){
+		if(bcrypt.compareSync(password, user.PASSWORD) === true){
 			let token = jwt.sign({ id: user.USERNAME,role:user.ROLE }, config.secret, {
       		expiresIn: 86400 // expires in 24 hours
     		});
@@ -47,8 +48,8 @@ router.get('/login',Celebrate.celebrate(
 	}),
 	Passport.authenticate('basic',{session:false}),(req,res)=>{
 
-	console.log(`GET /login from ${req.user}`);
-	res.send(`${req.username} has logged in`);
+	
+	res.json(req.user);
 });
 
 /**Route used to register a user, require admin status**/

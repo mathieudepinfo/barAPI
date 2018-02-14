@@ -27,7 +27,7 @@ function verifyTokenAsAdmin(req, res, next) {
       return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
     }
     // if everything good, check the role
-    if(decoded.role!=="\"admin\""){
+    if(decoded.role!=="admin"){
       console.log(decoded.role);
       return res.status(500).send({ auth: false, message: 'Unauthorized.' });
     }

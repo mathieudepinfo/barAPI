@@ -68,7 +68,7 @@ router.patch('/:id',VerifyToken.AsUser, Celebrate.celebrate(
     }),
      (req, res, next) => {
 
-    console.log(`UPDATE ${req.params.brand}`);
+    console.log(`UPDATE ${req.body.brand}`);
     DB.get('SELECT * FROM BOTTLES WHERE ID = ?', [req.params.id], (err, data) => {
 
         if (err) {
@@ -89,7 +89,7 @@ router.patch('/:id',VerifyToken.AsUser, Celebrate.celebrate(
             data.NBR=req.body.number;
         }
 
-        DB.run('UPDATE BOTTLES SET BRAND=?, PRICE=?,VOLUME=?,NUMBER=? WHERE (ID = ? OR BRAND= ?)', [data.BRAND,data.PRICE,data.VOLUME,data.NBR,req.params.id,req.params.id], (err) =>{
+        DB.run('UPDATE BOTTLES SET BRAND=?, PRICE=?,VOLUME=?,NBR=? WHERE (ID = ? OR BRAND= ?)', [data.BRAND,data.PRICE,data.VOLUME,data.NBR,req.params.id,req.params.id], (err) =>{
 
             if (err) {
                 return next(err);

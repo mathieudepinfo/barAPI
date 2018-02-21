@@ -101,12 +101,13 @@ router.patch('/:id',VerifyToken.AsUser, Celebrate.celebrate(
 
 router.delete('/:id',VerifyToken.AsAdmin, (req, res, next) => {
 
-    console.log(`DELETE new post ${req.params.id}`);
-    DB.run('DELETE FROM BOTTLES WHERE (ID = ? || BRAND = ?)', [req.params.id,req.params.id], (err) => {
+    console.log(`DELETE ${req.params.id}`);
+    DB.run('DELETE FROM BOTTLES WHERE ID = ?', [req.params.id], (err) => {
 
         if (err) {
             return next(err);
         }
+        console.log("Bottle deleted");
         return res.end();
     });
 });
